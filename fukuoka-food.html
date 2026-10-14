@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5ef">
+  <meta name="description" content="하카타 라멘부터 모츠나베와 명란 요리까지, 후쿠오카에서 꼭 들러볼 맛집 세 곳을 소개합니다.">
+  <title>후쿠오카 한 끼 지도 | FUKUOKA, ON A PLATE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Batang:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5f5ef;
+      --ink: #173b32;
+      --muted: #65756d;
+      --line: #d9dfd7;
+      --orange: #e7653d;
+      --yellow: #e7c85b;
+      --white: #fffefa;
+      --display: "Gowun Batang", Georgia, serif;
+      --sans: "Manrope", "Malgun Gothic", sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    button { font: inherit; }
+    .topline { height: 5px; background: var(--orange); }
+    .site-header { height: 76px; display: flex; align-items: center; justify-content: space-between; max-width: 1320px; padding: 0 46px; margin: auto; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; background: var(--ink); color: var(--paper); border-radius: 50%; font-family: var(--display); font-size: 19px; }
+    .brand small { display: block; color: var(--muted); font: 10px var(--mono); letter-spacing: .12em; margin-top: 2px; }
+    .site-nav { display: flex; align-items: center; gap: 32px; font-size: 13px; font-weight: 700; }
+    .site-nav a { text-decoration: none; }
+    .site-nav a:hover { color: var(--orange); }
+    .header-note { color: var(--muted); font: 10px var(--mono); letter-spacing: .08em; }
+    main { max-width: 1320px; margin: auto; padding: 0 46px; }
+    .hero { display: grid; grid-template-columns: 1.02fr .98fr; min-height: 570px; padding: 60px 0 72px; gap: 55px; align-items: center; }
+    .eyebrow { color: var(--orange); font: 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .hero h1 { margin: 21px 0 20px; max-width: 610px; font: 400 clamp(48px, 6.6vw, 84px)/1.12 var(--display); letter-spacing: 0; }
+    .hero h1 span { color: var(--orange); }
+    .hero-copy { max-width: 430px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .hero-bottom { display: flex; align-items: center; gap: 22px; margin-top: 32px; }
+    .primary-link { display: inline-flex; align-items: center; gap: 12px; padding: 14px 19px; background: var(--ink); color: white; text-decoration: none; font-size: 12px; font-weight: 700; transition: background .2s, transform .2s; }
+    .primary-link:hover { background: var(--orange); transform: translateY(-2px); }
+    .hero-count { color: var(--muted); font: 10px var(--mono); line-height: 1.7; }
+    .hero-visual { height: 438px; position: relative; }
+    .hero-photo { width: 83%; height: 100%; object-fit: cover; display: block; margin-left: auto; }
+    .photo-label { position: absolute; left: 0; bottom: 28px; width: 196px; padding: 18px 20px; background: var(--yellow); color: var(--ink); }
+    .photo-label strong { display: block; font: 20px var(--display); }
+    .photo-label span { display: block; margin-top: 7px; font: 9px var(--mono); letter-spacing: .1em; }
+    .photo-index { position: absolute; top: 17px; right: 17px; color: white; font: 10px var(--mono); letter-spacing: .12em; text-shadow: 0 1px 8px #000; }
+    .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; padding: 17px 0; gap: 20px; color: var(--muted); font: 10px var(--mono); letter-spacing: .1em; }
+    .ticker strong { color: var(--ink); font-weight: 500; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 22px; padding: 76px 0 28px; }
+    .section-head h2 { margin: 9px 0 0; font: 400 43px/1.2 var(--display); }
+    .section-head p { max-width: 330px; margin: 0 0 3px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 0 24px; }
+    .filter-button { padding: 9px 14px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font-size: 11px; transition: .2s; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: white; }
+    .restaurant-list { border-top: 1px solid var(--ink); }
+    .restaurant { display: grid; grid-template-columns: 58px minmax(220px, .82fr) minmax(245px, .9fr) minmax(250px, 1fr); gap: 28px; align-items: center; padding: 27px 0; border-bottom: 1px solid var(--line); animation: appear .55s both; }
+    .restaurant[hidden] { display: none; }
+    .restaurant:nth-child(2) { animation-delay: .08s; }
+    .restaurant:nth-child(3) { animation-delay: .16s; }
+    .restaurant-number { align-self: start; padding-top: 5px; color: var(--orange); font: 12px var(--mono); }
+    .restaurant-image-wrap { height: 193px; overflow: hidden; background: #d7dfd6; }
+    .restaurant-image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .restaurant:hover .restaurant-image { transform: scale(1.04); }
+    .restaurant-info { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+    .category { color: var(--orange); font: 10px var(--mono); letter-spacing: .08em; }
+    .restaurant-info h3 { margin: 8px 0 2px; font: 400 27px var(--display); }
+    .restaurant-jp { color: var(--muted); font-size: 12px; }
+    .restaurant-info p { margin: 15px 0 0; color: #52655d; font-size: 12px; line-height: 1.85; }
+    .restaurant-meta { display: flex; flex-direction: column; gap: 15px; padding-left: 18px; border-left: 1px solid var(--line); }
+    .meta-label { display: block; margin-bottom: 5px; color: #849087; font: 9px var(--mono); letter-spacing: .1em; }
+    .meta-value { font-size: 12px; font-weight: 700; line-height: 1.6; }
+    .restaurant-actions { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+    .map-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 11px; font-weight: 800; text-decoration: none; }
+    .map-link:hover { color: var(--orange); }
+    .save-button { display: inline-flex; align-items: center; gap: 6px; padding: 7px 9px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; font-size: 10px; }
+    .save-button[aria-pressed="true"] { border-color: var(--orange); color: var(--orange); }
+    .save-button svg { width: 13px; height: 13px; }
+    .route-strip { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 20px; margin: 66px 0 82px; padding: 22px 24px; background: #e7ebe3; }
+    .route-stop { display: flex; align-items: center; gap: 11px; }
+    .route-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex: 0 0 auto; }
+    .route-stop small { display: block; color: var(--muted); font: 9px var(--mono); }
+    .route-stop strong { display: block; margin-top: 4px; font-size: 12px; }
+    .route-arrow { color: #9aa69c; font-size: 16px; }
+    footer { background: var(--ink); color: var(--paper); }
+    .footer-inner { max-width: 1320px; padding: 28px 46px; margin: auto; display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .footer-inner p { margin: 0; color: #bdc9c1; font-size: 10px; }
+    .footer-mark { font: 10px var(--mono); letter-spacing: .12em; }
+    .toast { position: fixed; z-index: 5; left: 50%; bottom: 24px; transform: translate(-50%, 12px); padding: 12px 18px; background: var(--ink); color: white; font-size: 12px; opacity: 0; pointer-events: none; transition: .2s; }
+    .toast.visible { opacity: 1; transform: translate(-50%, 0); }
+    @keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 980px) {
+      .site-header, main { padding-left: 28px; padding-right: 28px; }
+      .hero { gap: 28px; min-height: 500px; }
+      .hero-visual { height: 370px; }
+      .restaurant { grid-template-columns: 34px minmax(180px, .8fr) 1fr; gap: 20px; }
+      .restaurant-image-wrap { grid-column: 2; grid-row: 1; }
+      .restaurant-info { grid-column: 3; grid-row: 1; }
+      .restaurant-meta { grid-column: 2 / 4; display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 16px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+      .restaurant-actions { margin-top: 0; }
+      .footer-inner { padding-left: 28px; padding-right: 28px; }
+    }
+    @media (max-width: 640px) {
+      .site-header { height: 65px; padding: 0 19px; }
+      .site-nav { gap: 14px; font-size: 11px; }
+      .site-nav a:last-child, .header-note { display: none; }
+      main { padding: 0 19px; }
+      .hero { grid-template-columns: 1fr; padding: 46px 0 38px; gap: 32px; }
+      .hero h1 { max-width: 450px; font-size: clamp(48px, 14vw, 70px); }
+      .hero-copy { font-size: 13px; }
+      .hero-visual { height: 290px; }
+      .hero-photo { width: 87%; }
+      .photo-label { bottom: 17px; width: 168px; padding: 14px 15px; }
+      .ticker { flex-wrap: wrap; font-size: 9px; }
+      .ticker span:last-child { display: none; }
+      .section-head { display: block; padding: 56px 0 21px; }
+      .section-head h2 { font-size: 36px; }
+      .section-head p { margin-top: 12px; }
+      .restaurant { grid-template-columns: 30px 1fr; gap: 12px 15px; padding: 20px 0; }
+      .restaurant-number { grid-column: 1; grid-row: 1 / 4; }
+      .restaurant-image-wrap { grid-column: 2; grid-row: 1; height: 210px; }
+      .restaurant-info { grid-column: 2; grid-row: 2; }
+      .restaurant-info h3 { font-size: 25px; }
+      .restaurant-meta { grid-column: 2; grid-row: 3; grid-template-columns: 1fr 1fr; gap: 13px; }
+      .restaurant-meta > div:nth-child(3) { grid-column: 1 / -1; }
+      .route-strip { grid-template-columns: 1fr; gap: 12px; margin: 45px 0 55px; padding: 18px; }
+      .route-arrow { padding-left: 2px; transform: rotate(90deg); transform-origin: left center; height: 8px; }
+      .footer-inner { padding: 23px 19px; align-items: start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="후쿠오카 한 끼 지도 홈">
+      <span class="brand-mark">福</span>
+      <span>한 끼 지도<small>FUKUOKA FOOD NOTES</small></span>
+    </a>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a href="#restaurants">맛집 세 곳</a>
+      <a href="#route">추천 동선</a>
+    </nav>
+    <span class="header-note">33°35′N 130°24′E</span>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">A little hungry in Fukuoka · 2026 EDITION</div>
+        <h1 id="hero-title">후쿠오카의<br>맛을 따라<br><span>한 그릇</span>씩.</h1>
+        <p class="hero-copy">진한 돈코츠 라멘, 속을 꽉 채운 모츠나베, 밥 위에 꽃피는 명란까지. 여행의 기억을 맛으로 남겨줄 후쿠오카의 식당 세 곳을 골랐어요.</p>
+        <div class="hero-bottom">
+          <a class="primary-link" href="#restaurants">맛집 둘러보기 <span aria-hidden="true">↘</span></a>
+          <span class="hero-count">3 PLACES<br>Hakata · Tenjin · Nakasu</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-photo" src="201606291649_7.jpg" alt="접시에 담긴 후쿠오카 명란" fetchpriority="high">
+        <div class="photo-index">03 / 03 &nbsp; MENTAIKO</div>
+        <div class="photo-label"><strong>명란으로 기억하는 여행</strong><span>HAKATA, FUKUOKA</span></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="가이드 정보">
+      <span><strong>LOCAL FAVORITES</strong> &nbsp; 엄선한 세 곳</span>
+      <span>NO. 01 — <strong>RAMEN</strong></span>
+      <span>NO. 02 — <strong>MOTSUNABE</strong></span>
+      <span>NO. 03 — <strong>MENTAIKO</strong></span>
+    </div>
+
+    <section id="restaurants" aria-labelledby="restaurants-title">
+      <div class="section-head">
+        <div><div class="eyebrow">The short list</div><h2 id="restaurants-title">오늘은 여기로.</h2></div>
+        <p>먹고 싶은 메뉴를 골라 보세요. 매장 운영 시간과 대기 상황은 방문 전 공식 안내를 확인하는 편이 좋아요.</p>
+      </div>
+      <div class="filters" role="group" aria-label="음식 종류 필터">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">전체 03</button>
+        <button class="filter-button" type="button" data-filter="ramen" aria-pressed="false">라멘</button>
+        <button class="filter-button" type="button" data-filter="nabe" aria-pressed="false">모츠나베</button>
+        <button class="filter-button" type="button" data-filter="mentaiko" aria-pressed="false">명란</button>
+      </div>
+
+      <div class="restaurant-list">
+        <article class="restaurant" data-category="ramen">
+          <div class="restaurant-number">01</div>
+          <div class="restaurant-image-wrap"><img class="restaurant-image" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=80" alt="진한 국물의 하카타식 돈코츠 라멘" loading="lazy"></div>
+          <div class="restaurant-info">
+            <span class="category">RAMEN · HAKATA</span>
+            <h3>하카타 잇소</h3>
+            <span class="restaurant-jp">博多一双 · Hakata Issou</span>
+            <p>돼지뼈를 진하게 우려낸 거품 국물로 유명한 하카타 라멘집. 얇은 면과 진한 육수의 조합을 제대로 맛보고 싶을 때 추천해요.</p>
+          </div>
+          <div class="restaurant-meta">
+            <div><span class="meta-label">SIGNATURE</span><span class="meta-value">돈코츠 라멘</span></div>
+            <div><span class="meta-label">AREA</span><span class="meta-value">하카타역 동쪽</span></div>
+            <div class="restaurant-actions">
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Hakata+Issou+Fukuoka" target="_blank" rel="noopener noreferrer">지도에서 보기 <span aria-hidden="true">↗</span></a>
+              <button class="save-button" type="button" aria-pressed="false" aria-label="하카타 잇소 저장"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>저장</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="restaurant" data-category="nabe">
+          <div class="restaurant-number">02</div>
+          <div class="restaurant-image-wrap"><img class="restaurant-image" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" alt="푸짐한 재료가 담긴 따뜻한 일본식 전골" loading="lazy"></div>
+          <div class="restaurant-info">
+            <span class="category">MOTSUNABE · TENJIN</span>
+            <h3>모츠나베 라쿠텐치</h3>
+            <span class="restaurant-jp">もつ鍋 楽天地 · Rakutenchi</span>
+            <p>부추를 산처럼 쌓아 올린 비주얼부터 인상적인 후쿠오카식 곱창전골. 여럿이 둘러앉아 나눠 먹기 좋은 저녁 메뉴예요.</p>
+          </div>
+          <div class="restaurant-meta">
+            <div><span class="meta-label">SIGNATURE</span><span class="meta-value">모츠나베</span></div>
+            <div><span class="meta-label">AREA</span><span class="meta-value">텐진 · 니시도리</span></div>
+            <div class="restaurant-actions">
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Rakutenchi+Motsunabe+Tenjin+Fukuoka" target="_blank" rel="noopener noreferrer">지도에서 보기 <span aria-hidden="true">↗</span></a>
+              <button class="save-button" type="button" aria-pressed="false" aria-label="모츠나베 라쿠텐치 저장"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>저장</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="restaurant" data-category="mentaiko">
+          <div class="restaurant-number">03</div>
+          <div class="restaurant-image-wrap"><img class="restaurant-image" src="201606291649_7.jpg" alt="간소 하카타 멘타이주의 주재료인 명란" loading="lazy"></div>
+          <div class="restaurant-info">
+            <span class="category">MENTAIKO · NAKASU</span>
+            <h3>간소 하카타 멘타이주</h3>
+            <span class="restaurant-jp">元祖博多めんたい重 · Ganso Hakata Mentaiju</span>
+            <p>다시마로 감싼 명란을 따뜻한 밥 위에 올려 먹는 명란덮밥 전문점. 명란을 곁들인 츠케멘도 함께 즐길 수 있어요.</p>
+          </div>
+          <div class="restaurant-meta">
+            <div><span class="meta-label">SIGNATURE</span><span class="meta-value">멘타이주 · 츠케멘</span></div>
+            <div><span class="meta-label">AREA</span><span class="meta-value">니시나카스</span></div>
+            <div class="restaurant-actions">
+              <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ganso+Hakata+Mentaiju+Fukuoka" target="_blank" rel="noopener noreferrer">지도에서 보기 <span aria-hidden="true">↗</span></a>
+              <button class="save-button" type="button" aria-pressed="false" aria-label="간소 하카타 멘타이주 저장"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>저장</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="route" aria-labelledby="route-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Save this for later</div><h2 id="route-title">하루의 맛 동선.</h2></div>
+        <p>각 식당은 서로 다른 동네에 있어요. 일정에 맞춰 한두 곳을 골라 여유롭게 즐겨보세요.</p>
+      </div>
+      <div class="route-strip" aria-label="하카타에서 텐진, 니시나카스 순서의 추천 동선">
+        <div class="route-stop"><span class="route-dot"></span><span><small>01 · LUNCH</small><strong>하카타 잇소</strong></span></div>
+        <span class="route-arrow" aria-hidden="true">→</span>
+        <div class="route-stop"><span class="route-dot"></span><span><small>02 · DINNER</small><strong>라쿠텐치</strong></span></div>
+        <span class="route-arrow" aria-hidden="true">→</span>
+        <div class="route-stop"><span class="route-dot"></span><span><small>03 · NEXT TIME</small><strong>멘타이주</strong></span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><p>매장 정보와 영업 여부는 방문 전에 공식 채널에서 확인해 주세요.</p><span class="footer-mark">FUKUOKA, ON A PLATE · 2026</span></div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const restaurants = document.querySelectorAll('.restaurant');
+    const toast = document.querySelector('.toast');
+    let toastTimer;
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        restaurants.forEach((restaurant) => {
+          restaurant.hidden = filter !== 'all' && restaurant.dataset.category !== filter;
+        });
+      });
+    });
+
+    document.querySelectorAll('.save-button').forEach((button) => {
+      const key = `fukuoka-food-${button.getAttribute('aria-label')}`;
+      button.setAttribute('aria-pressed', String(localStorage.getItem(key) === 'true'));
+      button.addEventListener('click', () => {
+        const saved = button.getAttribute('aria-pressed') !== 'true';
+        button.setAttribute('aria-pressed', String(saved));
+        localStorage.setItem(key, String(saved));
+        toast.textContent = saved ? '여행 목록에 저장했어요.' : '저장을 취소했어요.';
+        toast.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('visible'), 1800);
+      });
+    });
+  </script>
+</body>
+</html>
